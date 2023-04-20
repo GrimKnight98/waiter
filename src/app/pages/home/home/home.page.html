@@ -1,0 +1,165 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf=" login != null ; else elseBlockContent">
+      <ion-button >
+        <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+        Cuenta
+      </ion-button>
+    </ion-buttons>
+    <ng-template #elseBlockContent>
+      <ion-buttons slot="end">
+        <ion-button (click)="loginFn()">
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+          login
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
+
+    <ion-title>App Ordenes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf=" login ; else elseBlock">
+
+<ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button >
+      <ion-icon slot="end" name="refresh-circle-outline"></ion-icon>
+      Actualizar
+
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeLg="4" sizeMd="6" sizeXs="4">
+          <ion-card color="primary">
+            <ion-card-header>
+              <ion-card-subtitle>Pedidos</ion-card-subtitle>
+              <ion-card-title>4</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col sizeLg="4" sizeMd="6" sizeXs="4">
+          <ion-card color="warning">
+            <ion-card-header>
+              <ion-card-subtitle>Completados</ion-card-subtitle>
+              <ion-card-title>4</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col sizeLg="4" sizeMd="6" sizeXs="4">
+          <ion-card color="success">
+            <ion-card-header>
+              <ion-card-subtitle>Pagados</ion-card-subtitle>
+              <ion-card-title>4</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Mesas Ocupadas</ion-label>
+        <ion-button>See All</ion-button>
+      </ion-list-header>
+      <ion-item *ngFor="let mesa of mesas">
+        <ion-icon slot="start" name="restaurant-outline"></ion-icon>
+        <ion-icon slot="end" name="checkmark-outline" *ngIf="mesa.status == 'libre'; else elseBlock" color="success"></ion-icon>
+        <ng-template #elseBlock>
+          <ion-icon slot="end" name="alert-outline" color="danger"></ion-icon>
+        </ng-template>
+        <ion-label>
+          <h3>Mesa: {{mesa.nombre}}</h3>
+          <p>Estatus: {{mesa.status}}</p>
+        </ion-label>
+
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+  <!-- <div>
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size-sm="12" size-md="6" size-lg="4">
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+              <ion-card-title>Awesome Title</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Awesome content
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+              <ion-card-title>Awesome Title</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Awesome content
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+              <ion-card-title>Awesome Title</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Awesome content
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+              <ion-card-title>Awesome Title</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Awesome content
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+              <ion-card-title>Awesome Title</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Awesome content
+            </ion-card-content>
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div> -->
+</ion-content>
+<ng-template #elseBlock>
+
+<ion-content>
+  <div id="container">
+    <strong class="capitalize"></strong>
+    <p>Inicia sesion para Operar en la plataforma <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content>
+
+</ng-template>

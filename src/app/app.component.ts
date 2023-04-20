@@ -11,9 +11,10 @@ import { IonicModule } from '@ionic/angular';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Platillos', url: '/folder/inbox', icon: 'restaurant' },
-    { title: 'Snacks', url: '/folder/outbox', icon: 'fast-food' },
-    { title: 'Postres', url: '/folder/favorites', icon: 'nutrition' },
+    { title:'Inicio', url:'home', icon:'home' } ,
+    { title: 'Platillos', url: 'platillos', icon: 'restaurant' },
+    { title: 'Snacks', url: 'snacks', icon: 'fast-food' },
+    { title: 'Postres', url: 'postres', icon: 'nutrition' },
     { title: 'Bebidas', url: '/folder/archived', icon: 'beer' },
     { title: 'Adicionales', url: '/folder/trash', icon: 'add-circle' },
     { title: 'Pedido', url: '/folder/spam', icon: 'newspaper' },

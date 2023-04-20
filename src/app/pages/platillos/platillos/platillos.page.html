@@ -19,19 +19,31 @@
       </ion-buttons>
     </ng-template>
 
-    <ion-title>{{ folder }}</ion-title>
+    <ion-title>Platillos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
+      <ion-title size="large">Paltillos</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6" *ngFor="let platillo of platillos" >
+            <ion-card>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+              <ion-card-header>
+                <ion-card-subtitle>{{platillo.precio}}</ion-card-subtitle>
+                <ion-card-title>{{platillo.nombre}}</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
+
+
 </ion-content>
