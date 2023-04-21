@@ -59,14 +59,6 @@ export class HomePage implements OnInit {
   }
 
   getMesas(){
-      // this.mesaServ.getMesasDisponibles().subscribe(
-      //   resp=>{
-      //     this.mesas = resp.items;
-      //     console.log(this.mesas);
-
-      //   }
-      // );
-
     this.mesaServ.getMesas().subscribe(
       resp=>{
         this.mesas = resp.items;

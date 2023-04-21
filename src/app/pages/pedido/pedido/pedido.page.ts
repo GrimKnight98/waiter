@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonicModule, LoadingController, ToastController } from '@ionic/angular';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { MesasService } from 'src/app/services/mesas/mesas.service';
+import { PedidosService } from 'src/app/services/pedidos/pedidos.service';
 
 @Component({
   selector: 'app-pedido',
@@ -14,17 +15,18 @@ import { MesasService } from 'src/app/services/mesas/mesas.service';
 })
 export class PedidoPage implements OnInit {
 
-  items:any=[];
+  items:any;
   mesasDisp:any=[];
   login:any;
   tamount: number = 0;
-  mesa:any;
+  mesa_id:any;
 
   constructor(private carrito : CarritoService,
               private alertController : AlertController,
               private loadingCtrl : LoadingController,
               private toastController : ToastController,
-              private mesas : MesasService) { }
+              private mesas : MesasService,
+              private pedido : PedidosService) { }
 
   ngOnInit() {
     // this.login = localStorage.getItem('session_id');
@@ -102,19 +104,6 @@ export class PedidoPage implements OnInit {
           console.log(err);
         }
     );
-    // this.carrito.cleanCart().subscribe(
-    //   (res: any) => {
-    //     this.tamount = 0;
-    //     this.getItems();
-    //     setTimeout(
-    //       () => this.initListAnimation(),500
-    //     );
-    //     this.presentToast('bottom');
-    //     loading.dismiss();
-    //   },
-    //   (err:any) => {
-    //     console.log(err);
-    //   });
 
     loading.present();
   }
@@ -130,8 +119,78 @@ export class PedidoPage implements OnInit {
     await toast.present();
   }
 
+  async presentToastPedido(position: 'top' | 'middle' | 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Pedido debe tener al menos un Item!',
+      duration: 2000,
+      position: position,
+      color:'danger'
+    });
+
+    await toast.present();
+  }
+
   onChange(value:any){
-    this.mesa = value;
+    this.mesa_id = value;
+  }
+
+  async crearPedido(){
+
+    console.log("inicia crearPedido, items: ",this.items);
+
+    if (this.items == undefined|| this.items.length===0) {
+      console.log("arreglo vaciao ",this.items);
+      this.presentToastPedido('top');
+    } else {
+
+      const loading = await this.loadingCtrl.create({
+        message:"Espere...",
+        animated:true
+      });
+      loading.present();
+
+      var body = {
+        "mesero_id":localStorage.getItem('session_id'),
+        "MESA":this.mesa_id,
+        "total":this.tamount
+      }
+
+      var options = {
+        headers: {
+            'Content-Type': 'application/json'
+      }
+      }
+        console.log("hago pedido");
+        this.pedido.postPedidos(body,options).subscribe(
+           data =>{
+              console.log(true);
+              this.carrito.deleteCarrito().subscribe(
+                async (res:any)=>{
+                  this.tamount = 0;
+                  this.getItems();
+                  loading.dismiss();
+                  const toast = await this.toastController.create({
+                    message:"Pedido Enviado con exito...",
+                    duration:1500,
+                    color:'success',
+                    position:'top',
+                    icon:'checkmark-outline'
+                  });
+                  toast.present();
+
+                },
+                  (err:any) => {
+                    console.log(err);
+                  }
+              );
+
+          }, error=>{
+            console.log(error);
+            loading.dismiss();
+          }
+        )
+
+    }
   }
 
 
