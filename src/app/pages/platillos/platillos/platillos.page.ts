@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { AlimentosService } from 'src/app/services/alimentos/alimentos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-platillos',
@@ -17,10 +18,13 @@ export class PlatillosPage implements OnInit {
 
   login:boolean=true;
 
-  constructor(private alimen : AlimentosService) { }
+  constructor(private alimen : AlimentosService,
+              private router : Router) { }
 
   ngOnInit() {
     this.getPlatillos();
+    console.log(this.login);
+
 
   }
 
@@ -34,6 +38,12 @@ export class PlatillosPage implements OnInit {
 
       }
     )
+  }
+
+  goDetails(item_id:any){
+    console.log(item_id);
+    this.router.navigate(['platillo',item_id])
+
   }
 
 }

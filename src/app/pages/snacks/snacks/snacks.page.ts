@@ -13,7 +13,7 @@ import { AlimentosService } from 'src/app/services/alimentos/alimentos.service';
 })
 export class SnacksPage implements OnInit {
 
-  login :boolean=false;
+  login :boolean=true;
   snacks :any=[];
 
   constructor(private alim:AlimentosService) { }

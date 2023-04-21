@@ -14,15 +14,15 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
+  <ion-card *ngFor="let pla of platillo" >
     <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
     <ion-card-header>
-      <ion-card-title>Chilaquiles</ion-card-title>
-      <ion-card-subtitle>{{50 | currency:"MXN"}}</ion-card-subtitle>
+      <ion-card-title>{{pla.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{pla.precio | currency:"MXN"}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      DESCRIPCION DEL ARTICULO
+      {{pla.descripcion}}
     </ion-card-content>
   </ion-card>
 
@@ -32,9 +32,11 @@
         <ion-col size="12">
             <ion-item>
               <ion-label >Extras</ion-label>
-              <ion-select value="1"  placeholder="Selecciona opcion">
-                <ion-select-option value="1">salsa roja</ion-select-option>
-                <ion-select-option value="2">salsa verde</ion-select-option>
+              <ion-select #C (ionChange)="onChange(C.value)" placeholder="Selecciona opcion">
+                <ion-select-option value="0" >Normal</ion-select-option>
+                <ion-select-option *ngFor="let extra of extras" value="{{extra.id}}" >
+                    {{extra.nombre_extra}}
+                </ion-select-option>
               </ion-select>
             </ion-item>
         </ion-col>
@@ -42,7 +44,7 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngFor="let pla of platillo" >
     <ion-card-header>
       <ion-card-subtitle>Selecciona la cantidad de pedidos</ion-card-subtitle>
       <ion-card-title>Cantidad</ion-card-title>
@@ -55,7 +57,7 @@
         <ion-button (click)="increment()">+</ion-button>
       </div>
 
-        <ion-button  expand="block" fill="solid" shape="round">
+        <ion-button  expand="block" fill="solid" shape="round"  (click)="addCart(pla.id)">
           <ion-icon slot="end" name="newspaper-outline"></ion-icon> Añadir al pedido
         </ion-button>
     </ion-card-content>

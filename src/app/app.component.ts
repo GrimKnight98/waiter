@@ -17,7 +17,7 @@ export class AppComponent {
     { title: 'Postres', url: 'postres', icon: 'nutrition' },
     { title: 'Bebidas', url: '/folder/archived', icon: 'beer' },
     { title: 'Adicionales', url: '/folder/trash', icon: 'add-circle' },
-    { title: 'Pedido', url: '/folder/spam', icon: 'newspaper' },
+    { title: 'Pedido', url: 'pedido', icon: 'newspaper' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {}

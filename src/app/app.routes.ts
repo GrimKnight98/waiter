@@ -40,8 +40,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/login/login/login.page').then( m => m.LoginPage)
   },
   {
-    path: 'platillo',
+    path: 'platillo/:id',
     loadComponent: () => import('./pages/platillos/platillo/platillo.page').then( m => m.PlatilloPage)
+  },
+  {
+    path: 'pedido',
+    loadComponent: () => import('./pages/pedido/pedido/pedido.page').then( m => m.PedidoPage)
   },
 
 ];
