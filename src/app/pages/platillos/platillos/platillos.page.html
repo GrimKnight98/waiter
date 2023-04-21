@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-buttons slot="end" *ngIf=" login ; else elseBlock">
+    <ion-buttons slot="end" *ngIf=" login != null ; else elseBlock">
       <ion-button >
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
         Cuenta

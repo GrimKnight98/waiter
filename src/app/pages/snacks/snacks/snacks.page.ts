@@ -13,7 +13,7 @@ import { AlimentosService } from 'src/app/services/alimentos/alimentos.service';
 })
 export class SnacksPage implements OnInit {
 
-  login :boolean=true;
+  login :any;
   snacks :any=[];
 
   constructor(private alim:AlimentosService) { }
@@ -21,6 +21,10 @@ export class SnacksPage implements OnInit {
   ngOnInit() {
 
     this.getSnacks();
+  }
+
+  ionViewWillEnter(){
+   this.login = localStorage.getItem('session_id')
   }
 
   getSnacks(){

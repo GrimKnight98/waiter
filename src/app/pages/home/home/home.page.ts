@@ -48,6 +48,8 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter() {
+    console.log("hom will");
+
     this.login = localStorage.getItem('session_id');
     this.getMesas();
   }
@@ -71,4 +73,5 @@ export class HomePage implements OnInit {
       }
     );
   }
+
 }

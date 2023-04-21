@@ -23,7 +23,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="login ; else condicion">
+<ion-content [fullscreen]="true" *ngIf="login != null ; else condicion">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Postres</ion-title>

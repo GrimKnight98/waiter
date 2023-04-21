@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-bebidas',
-  templateUrl: './bebidas.page.html',
-  styleUrls: ['./bebidas.page.scss'],
+  selector: 'app-adicionales',
+  templateUrl: './adicionales.page.html',
+  styleUrls: ['./adicionales.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class BebidasPage implements OnInit {
+export class AdicionalesPage implements OnInit {
 
-  login:any;
+  login :any;
 
   constructor() { }
 
@@ -20,7 +20,7 @@ export class BebidasPage implements OnInit {
   }
 
   ionViewWillEnter(){
-   this.login = localStorage.getItem('session_id');
+    this.login = localStorage.getItem('session_id');
   }
 
 }

@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" (ionWillOpen)="getSessionId()">
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>Inbox</ion-list-header>
@@ -15,12 +15,30 @@
         </ion-list>
 
         <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
+          <ion-list-header>Opciones</ion-list-header>
 
-          <ion-item *ngFor="let label of labels" lines="none">
+              <ion-item>
+                <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+                <ion-label>
+                  Ayuda
+                </ion-label>
+              </ion-item>
+
+              <ion-item *ngIf="login == null ; else elseBlock" disabled="true" >
+                <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                <ion-label>Cerrar Sesion</ion-label>
+              </ion-item>
+              <ng-template #elseBlock>
+                <ion-item (click)="logOut()">
+                  <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                  <ion-label>Cerrar sesion</ion-label>
+                </ion-item>
+              </ng-template>
+
+          <!-- <ion-item *ngFor="let label of labels" lines="none">
             <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
             <ion-label>{{ label }}</ion-label>
-          </ion-item>
+          </ion-item> -->
         </ion-list>
       </ion-content>
     </ion-menu>

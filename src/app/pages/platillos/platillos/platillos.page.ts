@@ -16,7 +16,7 @@ export class PlatillosPage implements OnInit {
 
   platillos:any = []
 
-  login:boolean=true;
+  login:any;
 
   constructor(private alimen : AlimentosService,
               private router : Router) { }
@@ -24,8 +24,11 @@ export class PlatillosPage implements OnInit {
   ngOnInit() {
     this.getPlatillos();
     console.log(this.login);
+  }
 
 
+  ionViewWillEnter(){
+   this.login = localStorage.getItem('session_id');
   }
 
 

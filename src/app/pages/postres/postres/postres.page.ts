@@ -14,12 +14,16 @@ import { AlimentosService } from 'src/app/services/alimentos/alimentos.service';
 export class PostresPage implements OnInit {
 
   postres :any=[];
-  login : boolean = true;
+  login : any;
 
   constructor(private ALIM:AlimentosService) { }
 
   ngOnInit() {
     this.getPostres();
+  }
+
+  ionViewWillEnter(){
+   this.login = localStorage.getItem('session_id');
   }
 
   getPostres(){
