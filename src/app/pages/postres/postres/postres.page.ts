@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { AlimentosService } from 'src/app/services/alimentos/alimentos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-postres',
@@ -16,7 +17,8 @@ export class PostresPage implements OnInit {
   postres :any=[];
   login : any;
 
-  constructor(private ALIM:AlimentosService) { }
+  constructor(private ALIM:AlimentosService,
+              private router : Router) { }
 
   ngOnInit() {
     this.getPostres();
@@ -33,5 +35,10 @@ export class PostresPage implements OnInit {
           this.postres = resp.items;
       }
     )
+  }
+  goDetails(item_id:any){
+    console.log(item_id);
+    this.router.navigate(['platillo',item_id])
+
   }
 }

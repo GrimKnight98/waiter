@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { AlimentosService } from 'src/app/services/alimentos/alimentos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-snacks',
@@ -16,7 +17,8 @@ export class SnacksPage implements OnInit {
   login :any;
   snacks :any=[];
 
-  constructor(private alim:AlimentosService) { }
+  constructor(private alim:AlimentosService,
+              private router : Router) { }
 
   ngOnInit() {
 
@@ -36,6 +38,12 @@ export class SnacksPage implements OnInit {
 
       }
     )
+  }
+
+  goDetails(item_id:any){
+    console.log(item_id);
+    this.router.navigate(['platillo',item_id])
+
   }
 
 }

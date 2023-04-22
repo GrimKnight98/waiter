@@ -33,16 +33,28 @@
   <div id="container">
    <ion-grid fixed>
     <ion-row>
-      <ion-col size="6" *ngFor="let snack of snacks" >
-        <ion-card>
+      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12" *ngFor="let snack of snacks" >
+
+
+        <ion-card class="item ion-text-uppercase ion-padding">
           <ion-card-header>
-            <ion-card-subtitle>{{snack.nombre}}</ion-card-subtitle>
-            <ion-card-title>{{snack.precio}}</ion-card-title>
+            <ion-card-title>{{snack.nombre}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-button>
-              <ion-icon slot="icon-only" name="add"></ion-icon>
-            </ion-button>
+            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+
+
+            <ion-row class="ion-align-items-center ion-margin-top">
+              <ion-col size="6">
+                <h2 class="price">{{ snack.precio|currency:"MXN" }}</h2>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button (click)="goDetails(snack.id)" expand="block" fill="outline" shape="round" color="primary">
+                  Detalles
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
           </ion-card-content>
         </ion-card>
       </ion-col>
