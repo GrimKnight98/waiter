@@ -5,6 +5,7 @@ import { AlertController, IonicModule, LoadingController, ToastController } from
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { MesasService } from 'src/app/services/mesas/mesas.service';
 import { PedidosService } from 'src/app/services/pedidos/pedidos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedido',
@@ -26,7 +27,8 @@ export class PedidoPage implements OnInit {
               private loadingCtrl : LoadingController,
               private toastController : ToastController,
               private mesas : MesasService,
-              private pedido : PedidosService) { }
+              private pedido : PedidosService,
+              private router:Router) { }
 
   ngOnInit() {
     // this.login = localStorage.getItem('session_id');
@@ -184,11 +186,14 @@ export class PedidoPage implements OnInit {
                   }
               );
 
+
           }, error=>{
             console.log(error);
             loading.dismiss();
           }
         )
+
+        this.router.navigate(['home']);
 
     }
   }

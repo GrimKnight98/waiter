@@ -40,10 +40,16 @@
       <ion-row>
         <ion-col sizeLg="4" sizeMd="6" sizeXs="4">
           <ion-card color="primary">
-            <ion-card-header>
+            <ion-card-header *ngIf="resumenPed.pedidos_emitidos != 0 ; else elseBlock1">
               <ion-card-subtitle>Pedidos</ion-card-subtitle>
-              <ion-card-title>4</ion-card-title>
+              <ion-card-title>{{resumenPed.pedidos_emitidos}}</ion-card-title>
+
             </ion-card-header>
+            <ng-template #elseBlock1>
+              <ion-card-header>
+                <ion-card-subtitle>Aun no hay pedidos</ion-card-subtitle>
+              </ion-card-header>
+            </ng-template>
             <ion-card-content>
             </ion-card-content>
           </ion-card>
@@ -52,7 +58,7 @@
           <ion-card color="warning">
             <ion-card-header>
               <ion-card-subtitle>Completados</ion-card-subtitle>
-              <ion-card-title>4</ion-card-title>
+              <ion-card-title >{{resumenPed.pedidos_enproceso}}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
             </ion-card-content>
@@ -62,7 +68,7 @@
           <ion-card color="success">
             <ion-card-header>
               <ion-card-subtitle>Pagados</ion-card-subtitle>
-              <ion-card-title>4</ion-card-title>
+              <ion-card-title >{{resumenPed.pedidos_completados}}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
             </ion-card-content>
