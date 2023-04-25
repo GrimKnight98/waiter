@@ -55,7 +55,7 @@
         </ion-col>
         <ion-col sizeLg="4" sizeMd="6" sizeXs="4">
           <ion-card color="warning">
-            <ion-card-header *ngIf="resumenPed.pedidos_emitidos != 0 ; else elseBlock2">
+            <ion-card-header *ngIf="resumenPed.pedidos_enproceso != 0 ; else elseBlock2">
               <ion-card-subtitle>En Proceso</ion-card-subtitle>
               <ion-card-title >{{resumenPed.pedidos_enproceso}}</ion-card-title>
             </ion-card-header>
@@ -72,7 +72,7 @@
         </ion-col>
         <ion-col sizeLg="4" sizeMd="6" sizeXs="4">
           <ion-card color="success">
-            <ion-card-header *ngIf="resumenPed.pedidos_emitidos != 0 ; else elseBlock3">
+            <ion-card-header *ngIf="resumenPed.pedidos_completados != 0 ; else elseBlock3">
               <ion-card-subtitle>Completados</ion-card-subtitle>
               <ion-card-title >{{resumenPed.pedidos_completados}}</ion-card-title>
             </ion-card-header>
@@ -96,16 +96,37 @@
     <ion-list>
       <ion-list-header>
         <ion-label>Ordenes listas</ion-label>
-        <ion-button>See All</ion-button>
       </ion-list-header>
-      <ion-item *ngIf="ordenesListas != null || undefined ; else elseBlockListo">
+      <!-- <ion-item *ngIf="ped != null || undefined ; else elseBlockListo">
         <ion-icon slot="start" name="checkmark-outline"></ion-icon>
         <ion-label>
           <h2>Mesa: Mesa 2</h2>
           <h3>Mesero: 233</h3>
           <p>Orden: # 1233444</p>
         </ion-label>
-      </ion-item>
+      </ion-item> -->
+
+      <div *ngIf="ped != null || undefined ; else elseBlockListo">
+        <ion-item *ngFor="let item of ped" >
+            <ion-icon  *ngIf="item.status == 'PEDIDO'"  slot="start" name="information-circle-outline" color="primary"></ion-icon>
+            <ion-icon  *ngIf="item.status == 'en proceso'" slot="start" name="sync-outline" color="warning"></ion-icon>
+            <ion-icon  *ngIf="item.status == 'completado'"  slot="start" name="checkmark-outline" color="success"></ion-icon>
+            <!-- <div *ngSwitchCase="'PEDIDO'">
+              <ion-icon slot="start" name="information-circle-outline" color="primary"></ion-icon>
+            </div>
+            <div *ngSwitchCase="'en proceso'">
+              <ion-icon slot="start" name="sync-outline" color="warning"></ion-icon>
+            </div>
+            <div *ngSwitchCase="'completado'">
+              <ion-icon slot="start" name="checkmark-outline" color="success"></ion-icon>
+            </div> -->
+          <ion-label>
+            <h2>Mesa: {{item.nombre_mesa}}</h2>
+            <h3>Status: {{item.status}}</h3>
+            <p>Orden: # {{item.id}}</p>
+          </ion-label>
+        </ion-item>
+      </div>
 
       <ng-template #elseBlockListo>
         <ion-item>
@@ -125,7 +146,6 @@
     <ion-list>
       <ion-list-header>
         <ion-label>Mesas Ocupadas</ion-label>
-        <ion-button>See All</ion-button>
       </ion-list-header>
       <ion-item *ngFor="let mesa of mesas">
         <ion-icon slot="start" name="restaurant-outline"></ion-icon>

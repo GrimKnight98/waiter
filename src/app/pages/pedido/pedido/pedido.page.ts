@@ -193,7 +193,7 @@ export class PedidoPage implements OnInit {
           }
         )
 
-        this.router.navigate(['home']);
+        this.router.navigate(['pedido']);
 
     }
   }

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MesasService } from 'src/app/services/mesas/mesas.service';
 import { PedidosService } from 'src/app/services/pedidos/pedidos.service';
 import { ResumenPedidoService } from 'src/app/services/resumenPedidos/resumen-pedido.service';
+import { flatMap, interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,53 +17,40 @@ import { ResumenPedidoService } from 'src/app/services/resumenPedidos/resumen-pe
 })
 export class HomePage implements OnInit {
   login: any = localStorage.getItem('session_id');
-
   mesas :any=[];
   ordenesListas :any;
-
   resumenPed:any =[];
-
-  // mesas = [
-  //   {
-  //     nombre: 'Mesa 1',
-  //     status: 'libre',
-  //   },
-  //   {
-  //     nombre: 'Mesa 2',
-  //     status: 'ocupado',
-  //   },
-  //   {
-  //     nombre: 'Mesa 3',
-  //     status: 'ocupado',
-  //   },
-  //   {
-  //     nombre: 'Mesa 4',
-  //     status: 'libre',
-  //   },
-  //   {
-  //     nombre: 'Mesa 5',
-  //     status: 'ocupado',
-  //   },
-  // ];
+  ped:any;
 
   constructor(private router: Router,
               private mesaServ: MesasService,
-              private pedidos : ResumenPedidoService) {}
+              private pedidos : ResumenPedidoService,
+              private pedidosHist: PedidosService) {}
+
+              subscribes$ = interval(60000)
+              .pipe(flatMap(async () => this.getPedidos()))
+              //this.getData()
+              .subscribe(
+                data => {
+                console.log(", hago peticiones");
+
+                //console.log(this.data);
+              });
 
   ngOnInit() {
     console.log(this.login);
-    //this.getPedidos();
     console.log(this.ordenesListas);
-
   }
 
   ionViewWillEnter() {
     console.log("hom will");
-
     this.login = localStorage.getItem('session_id');
     this.getMesas();
-
     this.getPedidos();
+  }
+  ionViewWillLeave(){
+    console.log("dejo de pedir peticiones");
+    this.subscribes$.unsubscribe();
   }
 
   loginFn() {
@@ -84,9 +72,13 @@ export class HomePage implements OnInit {
         resp=>{
           this.resumenPed = resp.items;
           console.log(this.resumenPed);
-
         }
       );
+    this.pedidosHist.getPedidos().subscribe(
+      Response =>{
+        this.ped = Response.items;
+      }
+    )
   }
 
 }
