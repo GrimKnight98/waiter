@@ -43,7 +43,6 @@
             <ion-card-header *ngIf="resumenPed.pedidos_emitidos != 0 ; else elseBlock1">
               <ion-card-subtitle>Pedidos</ion-card-subtitle>
               <ion-card-title>{{resumenPed.pedidos_emitidos}}</ion-card-title>
-
             </ion-card-header>
             <ng-template #elseBlock1>
               <ion-card-header>
@@ -56,20 +55,34 @@
         </ion-col>
         <ion-col sizeLg="4" sizeMd="6" sizeXs="4">
           <ion-card color="warning">
-            <ion-card-header>
-              <ion-card-subtitle>Completados</ion-card-subtitle>
+            <ion-card-header *ngIf="resumenPed.pedidos_emitidos != 0 ; else elseBlock2">
+              <ion-card-subtitle>En Proceso</ion-card-subtitle>
               <ion-card-title >{{resumenPed.pedidos_enproceso}}</ion-card-title>
             </ion-card-header>
+
+            <ng-template #elseBlock2>
+              <ion-card-header>
+                <ion-card-subtitle>Aun no hay cambios</ion-card-subtitle>
+              </ion-card-header>
+            </ng-template>
+
             <ion-card-content>
             </ion-card-content>
           </ion-card>
         </ion-col>
         <ion-col sizeLg="4" sizeMd="6" sizeXs="4">
           <ion-card color="success">
-            <ion-card-header>
-              <ion-card-subtitle>Pagados</ion-card-subtitle>
+            <ion-card-header *ngIf="resumenPed.pedidos_emitidos != 0 ; else elseBlock3">
+              <ion-card-subtitle>Completados</ion-card-subtitle>
               <ion-card-title >{{resumenPed.pedidos_completados}}</ion-card-title>
             </ion-card-header>
+
+            <ng-template #elseBlock3>
+              <ion-card-header>
+                <ion-card-subtitle>Aun no hay cambios</ion-card-subtitle>
+              </ion-card-header>
+            </ng-template>
+
             <ion-card-content>
             </ion-card-content>
           </ion-card>
@@ -77,6 +90,37 @@
       </ion-row>
     </ion-grid>
   </div>
+
+
+  <div>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Ordenes listas</ion-label>
+        <ion-button>See All</ion-button>
+      </ion-list-header>
+      <ion-item *ngIf="ordenesListas != null || undefined ; else elseBlockListo">
+        <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+        <ion-label>
+          <h2>Mesa: Mesa 2</h2>
+          <h3>Mesero: 233</h3>
+          <p>Orden: # 1233444</p>
+        </ion-label>
+      </ion-item>
+
+      <ng-template #elseBlockListo>
+        <ion-item>
+          <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+          <ion-label>
+            <h2>Las ordes listas aparaceran aqui</h2>
+            <h3>Espera un poco ..</h3>
+          </ion-label>
+        </ion-item>
+      </ng-template>
+    </ion-list>
+  </div>
+
+
+
   <div>
     <ion-list>
       <ion-list-header>
