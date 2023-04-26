@@ -3,6 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+
     <ion-buttons slot="end" *ngIf=" login != null ; else elseBlock">
       <ion-button >
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
@@ -18,19 +19,45 @@
       </ion-buttons>
     </ng-template>
 
-    <ion-title>Adicionales </ion-title>
+    <ion-title>Platillos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Extras para tu orden </ion-title>
+      <ion-title size="large">Nuestros Platillos</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12" *ngFor="let adicional of adicionales" >
+          <ion-card class="item ion-text-uppercase ion-padding">
+            <ion-card-header>
+              <ion-card-title>{{adicional.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
 
-  <div id="container">
-    <strong class="capitalize">adicionales</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+              <ion-row class="ion-align-items-center ion-margin-top">
+                <ion-col size="6">
+                  <h2 class="price">{{ adicional.precio|currency:"MXN" }}</h2>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button (click)="goDetails(adicional.id)" expand="block" fill="outline" shape="round" color="primary">
+                    Detalles
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
+
+
 </ion-content>

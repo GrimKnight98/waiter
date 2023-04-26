@@ -1,7 +1,8 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { Adicionales } from 'src/app/interfaces/adicionales/adicionales';
 import { Bebidas } from 'src/app/interfaces/bebidas/bebidas';
 import { DetallePlatillo } from 'src/app/interfaces/platillos/detalle-platillo';
 import { ExtrasComida } from 'src/app/interfaces/platillos/extras-comida';
@@ -36,4 +37,20 @@ export class AlimentosService {
   getBebidas():Observable<Bebidas>{
     return this.http.get<Bebidas>('https://apex.oracle.com/pls/apex/wksp_testcurso1998/comidas/bebidas');
   }
+  getBebidasById(id:number){
+    return this.http.get(`https://apex.oracle.com/pls/apex/wksp_testcurso1998/comidas/bebidaById?id=${id}`)
+    .pipe(
+      map(
+        (res: any) => {
+          return res.items;
+        }
+      )
+    )
+  }
+
+  getAdicionales():Observable<Adicionales>{
+    return this.http.get<Adicionales>('https://apex.oracle.com/pls/apex/wksp_testcurso1998/comidas/adicionales');
+  }
+
+
 }

@@ -51,5 +51,10 @@ export const routes: Routes = [
     path: 'adicionales',
     loadComponent: () => import('./pages/adicionales/adicionales/adicionales.page').then( m => m.AdicionalesPage)
   },
+  {
+    path: 'bebida/:id',
+    loadComponent: () => import('./pages/bebidas/bebida/bebida/bebida.page').then( m => m.BebidaPage)
+  },
+
 
 ];
