@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Bebidas } from 'src/app/interfaces/bebidas/bebidas';
 import { DetallePlatillo } from 'src/app/interfaces/platillos/detalle-platillo';
 import { ExtrasComida } from 'src/app/interfaces/platillos/extras-comida';
 import { Platillos } from 'src/app/interfaces/platillos/platillo';
@@ -30,5 +31,9 @@ export class AlimentosService {
 
   getExtrasComida(id:any):Observable<ExtrasComida>{
     return this.http.get<ExtrasComida>(`https://apex.oracle.com/pls/apex/wksp_testcurso1998/comidas/extrasComida?comida=${id}`)
+  }
+
+  getBebidas():Observable<Bebidas>{
+    return this.http.get<Bebidas>('https://apex.oracle.com/pls/apex/wksp_testcurso1998/comidas/bebidas');
   }
 }

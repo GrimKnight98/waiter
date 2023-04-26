@@ -81,6 +81,7 @@ export class HomePage implements OnInit {
         this.ped = Response.items;
       }
     )
+    this.getMesas();
   }
 
 }

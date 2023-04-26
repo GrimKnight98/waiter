@@ -30,8 +30,35 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong class="capitalize">Bebdidas</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12" *ngFor="let bebida of bebidas" >
+          <ion-card class="item ion-text-uppercase ion-padding">
+            <ion-card-header>
+              <ion-card-title>{{bebida.nombre}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+
+
+              <ion-row class="ion-align-items-center ion-margin-top">
+                <ion-col size="6">
+                  <h2 class="price">{{ bebida.precio|currency:"MXN" }}</h2>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button (click)="goDetails(bebida.id)" expand="block" fill="outline" shape="round" color="primary">
+                    Detalles
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
+
+
 </ion-content>
