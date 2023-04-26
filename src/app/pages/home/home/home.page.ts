@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { MesasService } from 'src/app/services/mesas/mesas.service';
 import { PedidosService } from 'src/app/services/pedidos/pedidos.service';
@@ -25,7 +25,8 @@ export class HomePage implements OnInit {
   constructor(private router: Router,
               private mesaServ: MesasService,
               private pedidos : ResumenPedidoService,
-              private pedidosHist: PedidosService) {}
+              private pedidosHist: PedidosService,
+              private toastController:ToastController) {}
 
               subscribes$ = interval(60000)
               .pipe(flatMap(async () => this.getPedidos()))
@@ -40,6 +41,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     console.log(this.login);
     console.log(this.ordenesListas);
+
   }
 
   ionViewWillEnter() {

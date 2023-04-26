@@ -57,7 +57,7 @@
           <ion-card color="warning">
             <ion-card-header *ngIf="resumenPed.pedidos_enproceso != 0 ; else elseBlock2">
               <ion-card-subtitle>En Proceso</ion-card-subtitle>
-              <ion-card-title >{{resumenPed.pedidos_enproceso}}</ion-card-title>
+              <ion-card-title id="warning-card">{{resumenPed.pedidos_enproceso}}</ion-card-title>
             </ion-card-header>
 
             <ng-template #elseBlock2>
@@ -74,7 +74,7 @@
           <ion-card color="success">
             <ion-card-header *ngIf="resumenPed.pedidos_completados != 0 ; else elseBlock3">
               <ion-card-subtitle>Completados</ion-card-subtitle>
-              <ion-card-title >{{resumenPed.pedidos_completados}}</ion-card-title>
+              <ion-card-title id="success-card">{{resumenPed.pedidos_completados}}</ion-card-title>
             </ion-card-header>
 
             <ng-template #elseBlock3>

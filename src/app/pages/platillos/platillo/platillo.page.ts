@@ -62,30 +62,36 @@ export class PlatilloPage implements OnInit {
 
   addCart(comida_id:any){
 
-    var options = {
-      headers: {
-          'Content-Type': 'application/json'
-     }
-   };
-    var body = {
-      "item":comida_id,
-      "user_id":localStorage.getItem('session_id'),
-      "cantidad":Number(this.cantidad),
-      "extra_comida":this.seleccionExtra
+    if (this.cantidad == 0) {
+      this.decrementAlert('bottom');
+    } else {
+      var options = {
+        headers: {
+            'Content-Type': 'application/json'
+       }
+     };
+      var body = {
+        "item":comida_id,
+        "user_id":localStorage.getItem('session_id'),
+        "cantidad":Number(this.cantidad),
+        "extra_comida":this.seleccionExtra
+      }
+
+      this.carrito.postCarrito(body, options).subscribe(
+        (data:any)=>{
+          console.log(body);
+          console.log(true);
+          this.orderSuccess('bottom');
+
+
+        }, (error:any)=>{
+          console.log(error);
+
+        }
+      )
     }
 
-    this.carrito.postCarrito(body, options).subscribe(
-      (data:any)=>{
-        console.log(body);
-        console.log(true);
-        this.orderSuccess('bottom');
 
-
-      }, (error:any)=>{
-        console.log(error);
-
-      }
-    )
   }
 
   onChange(value:any){
@@ -94,7 +100,7 @@ export class PlatilloPage implements OnInit {
 
   async decrementAlert(position: 'top' | 'middle' | 'bottom'){
     const toast = await this.toastController.create({
-      message:'No puedes pedir menos de cero',
+      message:'No puedes pedir menos de cero o cero',
       duration:1500,
       color:'danger',
       position: position,
