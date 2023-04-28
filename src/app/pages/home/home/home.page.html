@@ -25,6 +25,10 @@
 
 <ion-content [fullscreen]="true" *ngIf=" login ; else elseBlock">
 
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
 <ion-toolbar>
   <ion-buttons slot="end">
     <ion-button >
@@ -106,29 +110,7 @@
         </ion-label>
       </ion-item> -->
 
-      <div *ngIf="ped != null || undefined ; else elseBlockListo">
-        <ion-item *ngFor="let item of ped" >
-            <ion-icon  *ngIf="item.status == 'PEDIDO'"  slot="start" name="information-circle-outline" color="primary"></ion-icon>
-            <ion-icon  *ngIf="item.status == 'en proceso'" slot="start" name="sync-outline" color="warning"></ion-icon>
-            <ion-icon  *ngIf="item.status == 'completado'"  slot="start" name="checkmark-outline" color="success"></ion-icon>
-            <!-- <div *ngSwitchCase="'PEDIDO'">
-              <ion-icon slot="start" name="information-circle-outline" color="primary"></ion-icon>
-            </div>
-            <div *ngSwitchCase="'en proceso'">
-              <ion-icon slot="start" name="sync-outline" color="warning"></ion-icon>
-            </div>
-            <div *ngSwitchCase="'completado'">
-              <ion-icon slot="start" name="checkmark-outline" color="success"></ion-icon>
-            </div> -->
-          <ion-label>
-            <h2>Mesa: {{item.nombre_mesa}}</h2>
-            <h3>Status: {{item.status}}</h3>
-            <p>Orden: # {{item.id}}</p>
-          </ion-label>
-        </ion-item>
-      </div>
-
-      <ng-template #elseBlockListo>
+      <div *ngIf=" ped == null || ped == undefined ; else elseBlockListo">
         <ion-item>
           <ion-icon slot="start" name="information-circle-outline"></ion-icon>
           <ion-label>
@@ -136,6 +118,28 @@
             <h3>Espera un poco ..</h3>
           </ion-label>
         </ion-item>
+      </div>
+
+      <ng-template #elseBlockListo>
+        <ion-item *ngFor="let item of ped" >
+          <ion-icon  *ngIf="item.status == 'PEDIDO'"  slot="start" name="information-circle-outline" color="primary"></ion-icon>
+          <ion-icon  *ngIf="item.status == 'en proceso'" slot="start" name="sync-outline" color="warning"></ion-icon>
+          <ion-icon  *ngIf="item.status == 'completado'"  slot="start" name="checkmark-outline" color="success"></ion-icon>
+          <!-- <div *ngSwitchCase="'PEDIDO'">
+            <ion-icon slot="start" name="information-circle-outline" color="primary"></ion-icon>
+          </div>
+          <div *ngSwitchCase="'en proceso'">
+            <ion-icon slot="start" name="sync-outline" color="warning"></ion-icon>
+          </div>
+          <div *ngSwitchCase="'completado'">
+            <ion-icon slot="start" name="checkmark-outline" color="success"></ion-icon>
+          </div> -->
+        <ion-label>
+          <h2>Mesa: {{item.nombre_mesa}}</h2>
+          <h3>Status: {{item.status}}</h3>
+          <p>Orden: # {{item.id}}</p>
+        </ion-label>
+      </ion-item>
       </ng-template>
     </ion-list>
   </div>

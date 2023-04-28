@@ -79,9 +79,23 @@ export class HomePage implements OnInit {
     this.pedidosHist.getPedidos().subscribe(
       Response =>{
         this.ped = Response.items;
+        if (this.ped.length == 0) {
+          this.ped = null
+        }
+        console.log("como se ve ped si pedidiso");
+
+        console.log(this.ped);
+
       }
     )
     this.getMesas();
   }
+
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+    }, 2000);
+  };
 
 }
