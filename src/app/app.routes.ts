@@ -54,7 +54,11 @@ export const routes: Routes = [
   {
     path: 'bebida/:id',
     loadComponent: () => import('./pages/bebidas/bebida/bebida/bebida.page').then( m => m.BebidaPage)
+  },  {
+    path: 'ayuda',
+    loadComponent: () => import('./pages/ayuda/ayuda/ayuda.page').then( m => m.AyudaPage)
   },
+
 
 
 ];

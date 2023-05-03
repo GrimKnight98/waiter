@@ -1,0 +1,94 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Ayuda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Ayuda</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>¿Como Iniciar Sesion?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+          <br>
+          <p>Para poder iniciar sesion, usa el ID que te dio tu empleador.</p>
+          <p>Para poder Iniciar, ve al menu lateral, en Inicio, da click en el Boton Login que esta en la esquina superior derecha</p>
+          <p>Llena el formulario con tus datos, <i>Correo</i> y <i>Contraseña</i></p>
+          <p>El app valida tus datos, si son correctos te redirecciona al Inicio</p>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>Capturar Ordenes</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p>Para poder capturar una orden escoje el tipo de aliemnto que pide el cliente</p>
+        <ul>
+          <li>Platillo</li>
+          <li>Postre</li>
+          <li>etc...</li>
+        </ul>
+        <p>Haz Click en el boton detalle, esta accion te llevara a la vista de detalle del articulo</p>
+        <h4>Extras</h4>
+        <p>Estea seccion configura detalles como :</p>
+          <ul>
+            <li>Si el platillo es salsa verde/roja</li>
+            <li>Tipo de carne</li>
+            <li>presentacion</li>
+          </ul>
+          <p>esto de acuerdo al plaitllo</p>
+          <p>si no tiene se deja en normal o vacio</p>
+        <h4>Cantidad</h4>
+        <p>en Cantidad puedes definir el numero de aliemntos que pide el cliente</p>
+        <p>el app valida que no se pida menos de 0 y que se pida almenos uno del platillo en cuestion</p>
+        <h4>Añadir al pedido</h4>
+        <p>Por ultimo para añadir el alimento que quiere el cliente, haz click en añadir el pedido, saldra una notificacion de añadido a la orden</p>
+        <p>este se guardara en una lista, para poder verla en el menu lateral, da click en resumen pedido y ahi podras ver el resumen de la orden del cliente</p>
+
+
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" color="light">
+        <ion-label>Confirmar Orden</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p>Una vez que el cliente termino de dictar su pedido, Para poder enviarlo seleccion ala mesa en la que esta tu cliente y haz click en el boton realizar pedido</p>
+        <p>este boton esta en la pagin aresumen pedido, par aacceder a esta pagina ve al menu lateral y haz click en pedido.</p>
+        <p>en caso de hacer un pedido vacio saldra un anotiifcacion diciendo que al menos debe haber un item en el pedido</p>
+        <p>de no ser asi se genera el pedido, en la pagina Inicio puedes ver el pedido emitido y su respectivo estatus</p>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="fourth">
+      <ion-item slot="header" color="light">
+        <ion-label>Status pedido</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p>Una ves que se envio un pedido, este se podra ver en la pagina de inicio</p>
+            <p>En la pagina hay una cinta con tres cajas que indican el numero de pedidos en sus distintas fases</p>
+              <ul>
+                <li>PEDIDO</li>
+                <li>EN PROCESO</li>
+                <li>COMPLETADO</li>
+              </ul>
+            <p>Aunado a esto hay una lista donde estan las ordenes hechas por cada mesero, mostrando la mesa ocupada numero de pedido y un icono que muestra es l estatus</p>
+            <p>El app actualiza el contenido constantemente, verifica cuando tu pedido ya este completado para aentregar al cliente</p>
+      </div>
+    </ion-accordion>
+
+  </ion-accordion-group>
+
+
+
+</ion-content>
