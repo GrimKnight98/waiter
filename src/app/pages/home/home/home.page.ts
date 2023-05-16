@@ -20,8 +20,11 @@ export class HomePage implements OnInit {
   mesas :any=[];
   ordenesListas :any;
   resumenPed:any =[];
-  ped:any;
+  ped: any;
 
+  submited: any;
+  processing: any;
+  finished: any;
   constructor(private router: Router,
               private mesaServ: MesasService,
               private pedidos : ResumenPedidoService,
@@ -74,6 +77,14 @@ export class HomePage implements OnInit {
         resp=>{
           this.resumenPed = resp.items;
           console.log(this.resumenPed);
+
+          // this.submited = this.resumenPed['pedidos_emitidos'];
+          // this.processing = this.resumenPed['pedidos_enproceso'];
+          // this.finished = this.resumenPed['pedidos_completados'];
+          // console.log(this.submited, this.processing, this.finished);
+          // localStorage.setItem('submited', this.resumenPed['pedidos_emitidos']);
+          // localStorage.setItem('processing', this.resumenPed['pedidos_enproceso']);
+          // localStorage.setItem('finished', this.resumenPed['pedidos_completados']);
         }
       );
     this.pedidosHist.getPedidos().subscribe(
@@ -90,6 +101,7 @@ export class HomePage implements OnInit {
     )
     this.getMesas();
   }
+
 
   handleRefresh(event:any) {
     setTimeout(() => {
